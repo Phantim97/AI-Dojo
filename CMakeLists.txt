@@ -1,3 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 project ("AI Dojo" LANGUAGES CXX)
 add_subdirectory("Basics")
+# add_subdirectory("Intermediate")
+# add_subdirectory("Advanced")
+add_subdirectory("Utility")

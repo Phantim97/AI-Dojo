@@ -259,7 +259,7 @@ void pretrained_model()
 	torch::nn::Sequential model
 	{
 		//ConvTranspose2dOptions allows us to use padding
-		torch::nn::Conv2d(torch::nn::ConvTranspose2dOptions(1, 16, 3).stride(2).padding(1)),
+		torch::nn::ConvTranspose2d(torch::nn::ConvTranspose2dOptions(1, 16, 3).stride(2).padding(1)),
 		torch::nn::ReLU()
 	};
 

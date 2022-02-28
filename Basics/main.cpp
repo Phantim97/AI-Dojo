@@ -1,7 +1,7 @@
 #include "tensor_basics.h"
+#include "lin_reg.h"
 
 int main()
 {
-	tensor_existing_data();
 	return 0;
 }
