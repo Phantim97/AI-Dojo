@@ -13,7 +13,7 @@ include_directories("${TORCH_INCLUDE_DIRS}")
 include_directories(${CMAKE_SOURCE_DIR}/Utility)
 
 # Add source to this project's executable.
-add_executable(AIBasics "main.cpp" "tensor_basics.h" "tensor_basics.cpp" "lin_reg.h" "lin_reg.cpp" "log_reg.h" "ffnet.h" "ffnet.cpp")
+add_executable(AIBasics "main.cpp" "tensor_basics.h" "tensor_basics.cpp" "lin_reg.h" "lin_reg.cpp" "log_reg.h" "log_reg.cpp" "ffnet.h" "ffnet.cpp")
 
 # Link Torch Libraries
 target_link_libraries(AIBasics "${TORCH_LIBRARIES}")
