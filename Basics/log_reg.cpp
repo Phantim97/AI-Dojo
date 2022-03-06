@@ -108,8 +108,8 @@ void log_reg_main()
 
 	std::cout << "Testing finished\n";
 
-	double test_accuracy = num_correct / num_test_samples;
-	double test_sample_mean_loss = running_loss / num_test_samples;
+	const double test_accuracy = num_correct / num_test_samples;
+	const double test_sample_mean_loss = running_loss / num_test_samples;
 
 	std::cout << "Testset - Loss: " << test_sample_mean_loss << ", Accuracy: " << test_accuracy << '\n';
 }
