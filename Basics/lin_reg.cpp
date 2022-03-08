@@ -62,52 +62,52 @@ void lin_reg_main()
 	std::cout << "Training finished\n";
 }
 
-int zero_op(const int x)
+static int zero_op(const int x)
 {
 	return x + 5;
 }
 
-int one_op(const int x)
+static int one_op(const int x)
 {
 	return x - 1;
 }
 
-int two_op(const int x)
+static int two_op(const int x)
 {
 	return 2 * x;
 }
 
-int three_op(const int x)
+static int three_op(const int x)
 {
 	return 3 * x;
 }
 
-int four_op(const int x)
+static int four_op(const int x)
 {
 	return x * x;
 }
 
-int five_op(const int x)
+static int five_op(const int x)
 {
 	return x + 15;
 }
 
-int six_op(const int x)
+static int six_op(const int x)
 {
 	return 6 * x + 7;
 }
 
-int seven_op(const int x)
+static int seven_op(const int x)
 {
 	return 4 * x + 3;
 }
 
-int eight_op(const int x)
+static int eight_op(const int x)
 {
 	return 4 * x + 4;
 }
 
-int nine_op(const int x)
+static int nine_op(const int x)
 {
 	return 5 * x - 4;
 }

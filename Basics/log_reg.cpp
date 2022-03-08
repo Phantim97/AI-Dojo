@@ -76,7 +76,7 @@ void log_reg_main()
 		}
 
 		double sample_mean_loss = running_loss / num_train_samples;
-		double accuracy = num_correct / num_train_samples();
+		double accuracy = num_correct / num_train_samples;
 
 		std::cout << "Epoch [" << (epoch + 1) << "/" << num_epochs << "], Trainset - Loss: "
 			<< sample_mean_loss << ", Accuracy: " << accuracy << '\n';
