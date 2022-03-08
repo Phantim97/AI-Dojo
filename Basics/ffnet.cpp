@@ -202,20 +202,16 @@ struct Net final : torch::nn::Module
 
 	Net()
 	{
-		register_module("fc1", torch::nn::Linear(1, 1));
-		register_module("fc2", torch::nn::Linear(1, 1));
-		register_module("fc3", torch::nn::Linear(1, 1));
+		fc1 = register_module("fc1", torch::nn::Linear(1, 5));
+		fc2 = register_module("fc2", torch::nn::Linear(5, 10));
+		fc3 = register_module("fc3", torch::nn::Linear(10, 1));
 	}
 
 	torch::Tensor forward(torch::Tensor x)
 	{
-		std::cout << "Pass 1\n";
-		x = torch::relu(fc1->forward(x));
-		std::cout << "Pass 2\n";
-		x = torch::relu(fc2->forward(x));
-		std::cout << "Pass 3\n";
-		x = torch::relu(fc3->forward(x));
-		return x;
+		x = fc1->forward(x);
+		x = fc2->forward(x);
+		return fc3->forward(x);
 	}
 };
 
