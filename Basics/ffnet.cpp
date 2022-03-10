@@ -137,7 +137,7 @@ struct Options
 {
 	const int64_t input_size = 1;
 	const int64_t output_size = 1;
-	const size_t num_epochs = 60;
+	const size_t num_epochs = 20000;
 	const double learning_rate = 0.001;
 	torch::Device device = torch::kCPU;
 };
@@ -199,19 +199,28 @@ struct Net final : torch::nn::Module
 	torch::nn::Linear fc1 { nullptr };
 	torch::nn::Linear fc2 { nullptr };
 	torch::nn::Linear fc3 { nullptr };
+	torch::nn::Linear fc4 { nullptr };
+	torch::nn::Linear fc5 { nullptr };
+	torch::nn::Linear fc6 { nullptr };
 
-	Net()
+	Net() 
 	{
-		fc1 = register_module("fc1", torch::nn::Linear(1, 5));
-		fc2 = register_module("fc2", torch::nn::Linear(5, 10));
-		fc3 = register_module("fc3", torch::nn::Linear(10, 1));
+		fc1 = register_module("fc1", torch::nn::Linear(1, 10));
+		fc2 = register_module("fc2", torch::nn::Linear(10, 20));
+		fc3 = register_module("fc3", torch::nn::Linear(20, 50));
+		fc4 = register_module("fc4", torch::nn::Linear(50, 20));
+		fc5 = register_module("fc5", torch::nn::Linear(20, 10));
+		fc6 = register_module("fc6", torch::nn::Linear(10, 1));
 	}
 
 	torch::Tensor forward(torch::Tensor x)
 	{
-		x = fc1->forward(x);
-		x = fc2->forward(x);
-		return fc3->forward(x);
+		x = torch::tanh(fc1->forward(x));
+		x = torch::tanh(fc2->forward(x));
+		x = torch::tanh(fc3->forward(x));
+		x = fc4->forward(x);
+		x = fc5->forward(x);
+		return fc6->forward(x);
 	}
 };
 
@@ -255,14 +264,14 @@ void proj()
 	std::cout << "Optimizer\n";
 
 	//Optimizer
-	torch::optim::Adam optimizer(model.parameters(), torch::optim::AdamOptions(5e-2));
+	torch::optim::Adam optimizer(model.parameters(), torch::optim::AdamOptions(5e-4));
 
-	std::cout << std::fixed << std::setprecision(4);
+	//std::cout << std::fixed << std::setprecision(4);
 
 	std::cout << "Training...\n";
 
 	//Train the model
-	for (size_t epoch = 0; epoch != options.num_epochs * 1000 + 40000; epoch++)
+	for (size_t epoch = 0; epoch != options.num_epochs; epoch++)
 	{
 		//Forward pass
 		torch::Tensor output = model.forward(x_train);
@@ -274,7 +283,7 @@ void proj()
 
 		if ((epoch + 1) % 5 == 0)
 		{
-			std::cout << "Epoch [" << (epoch + 1) << '/' << options.num_epochs * 1000 + 40000 <<
+			std::cout << "Epoch [" << (epoch + 1) << '/' << options.num_epochs <<
 				"], Loss: " << loss.item<double>() << '\n';
 		}
 	}
