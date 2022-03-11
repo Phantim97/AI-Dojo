@@ -203,6 +203,7 @@ struct Net final : torch::nn::Module
 	torch::nn::Linear fc5 { nullptr };
 	torch::nn::Linear fc6 { nullptr };
 
+	//Can use torch::nn::LinearOptions to set the input and output of each linear layer
 	Net() 
 	{
 		fc1 = register_module("fc1", torch::nn::Linear(1, 10));
@@ -256,6 +257,8 @@ void proj()
 	//Linear Regression model
 	//torch::nn::Linear model(options.input_size, options.output_size);
 
+	//Note can also utilize:
+	//const std::shared_ptr<Net> net = std::shared<Net>();
 	Net model;
 
 	//Linear regression model to CUDA

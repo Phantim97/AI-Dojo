@@ -1,5 +1,5 @@
 # AI-Dojo
-AI Examples to bolster knowledge
+Using AI Examples to bolster knowledge
 from beginner to advanced.
 
-Also some potential projects to throw in too
+Including projects of my own to reinforce muscle memory
